@@ -3,25 +3,29 @@
 //WHEN I open the planner
 
 //THEN the current day is displayed at the top of the calendar
-    //moment().format('MMMM Do YYYY, h:mm:ss a');
+    //incorporate moment js
 
 //WHEN I scroll down
 
 //THEN I am presented with time blocks for standard business hours
+    //use grid system
 
 //WHEN I view the time blocks for that day
 
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
+    //use .past, .present. and .future CSS classes. apply within conditions.
 
 //WHEN I click into a time block
-    //click(), $(textarea), focus, and blur
 
 //THEN I can enter an event
+    //click(), $(textarea), focus, and blur functions
 
 //WHEN I click the save button for that time block
 
 //THEN the text for that event is saved in local storage
+    //buttons should initiate save function/setItem for their appended text area.
 
 //WHEN I refresh the page
 
 //THEN the saved events persist
+    //localStorage.getItem

@@ -3,6 +3,7 @@
 //WHEN I open the planner
 
 //THEN the current day is displayed at the top of the calendar
+    //moment().format('MMMM Do YYYY, h:mm:ss a');
 
 //WHEN I scroll down
 
@@ -13,6 +14,7 @@
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
 
 //WHEN I click into a time block
+    //click(), $(textarea), focus, and blur
 
 //THEN I can enter an event
 

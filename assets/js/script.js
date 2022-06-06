@@ -1,9 +1,9 @@
-//GIVEN I am using a daily planner to create a schedule
+//the current day is displayed at the top of the calendar using moment.js
+var currentDate = document.querySelector("#currentDay");
 
-//WHEN I open the planner
+var currentTime = moment();
 
-//THEN the current day is displayed at the top of the calendar
-    //FEATURE: incorporate moment js
+currentDate.textContent = currentTime.format("DD MMMM, YYYY")
 
 //WHEN I scroll down
 
@@ -13,7 +13,7 @@
 //WHEN I view the time blocks for that day
 
 //THEN each time block is color-coded to indicate whether it is in the past, present, or future
-    //FEATURE: use .past, .present. and .future CSS classes. apply within conditions.
+    //FEATURE: use .past, .present. and .future CSS classes. use moment.js to apply them with time being the condition. 
 
 //WHEN I click into a time block
 

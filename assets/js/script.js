@@ -1,31 +1,56 @@
-//the current day is displayed at the top of the calendar using moment.js
-var currentDate = document.querySelector("#currentDay");
+//loads when document is loaded and ready
+$(document).ready(function () {    
+    //the current day is displayed at the top of the calendar using moment.js
+    var currentDate = document.querySelector("#currentDay");
 
-var currentTime = moment();
+    var currentTime = moment();
 
-currentDate.textContent = currentTime.format("DD MMMM, YYYY")
+    currentDate.textContent = currentTime.format("DD MMMM, YYYY. HH:MM")
+    
+    var hour = moment().format("H");
 
-//WHEN I scroll down
+    const saveBtn = document.querySelector("button");
 
-//THEN I am presented with time blocks for standard business hours
-    //FEATURE: use grid system
+    //function for rendering time blocks, text area, and save buttons
+    for (var i = 9; i <= 17; i++){
+        var hourBlock = $(
+            `<div class="d-flex flex-row time-block">
+                <div id="hour${i}" class="hour col-1">
+                    ${i}:00
+                </div>
+                <textarea id="text-area${i}" class="form-control description col-6 textarea"></textarea>
+                <button id="save-btn" class="saveBtn col-1"></button>
+            </div>`);
+        //appends div in hourBlock to container section
+        $("#container").append(hourBlock);
+        //getlocalStorage(`#text-area${i}`);
+        //getlocalStorage(i);
 
-//WHEN I view the time blocks for that day
+        //colour codes text area by comparing described time with real time
+        function colourCode() {
+            for (var i = 9; i <= 17; i++) {
+                
+                if (hour===i) {
+                    $(`#text-area${i}`).addClass("present");
+                } else if (hour > i){
+                    $(`#text-area${i}`).addClass("past");
+                } else if (hour < i) {
+                    $(`#text-area${i}`).addClass("future");
+                } 
+            }
+        }
+    };
+    //calls colour coding function
+    colourCode();
 
-//THEN each time block is color-coded to indicate whether it is in the past, present, or future
-    //FEATURE: use .past, .present. and .future CSS classes. use moment.js to apply them with time being the condition. 
+    //var textArray = [];
 
-//WHEN I click into a time block
+    $("saveBtn.saveBtn.col-1").click(function(e){
+        console.log(hour, i);
+        //var inputText = $(`#text-area${i}`).val();
+        //textArray.push(inputText);
+        //localStorage.setItem("textArray", JSON.stringify(textArray));
+    })
 
-//THEN I can enter an event
-    //FEATURE: click(), $(textarea), focus, and blur functions
-
-//WHEN I click the save button for that time block
-
-//THEN the text for that event is saved in local storage
-    //FEATURE: add persistence - buttons should initiate save function/setItem for their appended text area.
-
-//WHEN I refresh the page
-
-//THEN the saved events persist
-    //localStorage.getItem
+    //var textArray = JSON.parse(localStorage.getItem("textArray")) || [];
+});

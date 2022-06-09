@@ -5,11 +5,9 @@ $(document).ready(function () {
 
     var currentTime = moment();
 
-    currentDate.textContent = currentTime.format("DD MMMM, YYYY. HH:MM")
+    currentDate.textContent = currentTime.format("DD MMMM, YYYY.")
     
     var hour = moment().format("H");
-
-    const saveBtn = document.querySelector("button");
 
     //function for rendering time blocks, text area, and save buttons
     for (var i = 9; i <= 17; i++){
@@ -23,8 +21,6 @@ $(document).ready(function () {
             </div>`);
         //appends div in hourBlock to container section
         $("#container").append(hourBlock);
-        //getlocalStorage(`#text-area${i}`);
-        //getlocalStorage(i);
 
         //colour codes text area by comparing described time with real time
         function colourCode() {
@@ -43,14 +39,24 @@ $(document).ready(function () {
     //calls colour coding function
     colourCode();
 
-    //var textArray = [];
+    //saves values from textareas
+    $(".saveBtn.col-1").on("click", function () {
+        for (var i = 9; i <= 17; i++) {
+            var text = $(`#text-area${i}`).val();
+            var time = $(`#hour${i}`).attr("id");
+            console.log(time, text);
 
-    $("saveBtn.saveBtn.col-1").click(function(e){
-        console.log(hour, i);
-        //var inputText = $(`#text-area${i}`).val();
-        //textArray.push(inputText);
-        //localStorage.setItem("textArray", JSON.stringify(textArray));
-    })
+            var taskObj = {time, text};
 
-    //var textArray = JSON.parse(localStorage.getItem("textArray")) || [];
+            taskArray.push(taskObj);
+            
+            //stores array into local storage
+            localStorage.setItem("taskArray", JSON.stringify(taskArray));
+        }
+    });
+
+    var taskArray = []; 
+
+    //loading feature in progress
+
 });

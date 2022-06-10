@@ -17,7 +17,7 @@ $(document).ready(function () {
                     ${i}:00
                 </div>
                 <textarea id="text-area${i}" class="form-control description col-6 textarea"></textarea>
-                <button id="save-btn" class="saveBtn col-1"><img src="./assets/images/image.png" /></button>
+                <button id="save-btn" class="saveBtn col-1"><i class="fas fa-save"></i></button>
             </div>`);
         //appends div in hourBlock to container section
         $("#container").append(hourBlock);
@@ -53,7 +53,7 @@ $(document).ready(function () {
         $(".hour.col-1").each(function() {
             var hour = $(this).text();
             var text = localStorage.getItem(hour);
-
+            //checks if text is not empty, then fills in the textarea with the value of text
             if(text !== null) {
                 $(this).siblings(".form-control.description.col-6.textarea").val(text);
             }

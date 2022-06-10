@@ -12,12 +12,12 @@ $(document).ready(function () {
     //function for rendering time blocks, text area, and save buttons
     for (var i = 9; i <= 17; i++){
         var hourBlock = $(
-            `<div class="d-flex flex-row time-block">
+            `<div class="d-flex flex-row time-block justify-content-center">
                 <div id="hour${i}" class="hour col-1">
                     ${i}:00
                 </div>
                 <textarea id="text-area${i}" class="form-control description col-6 textarea"></textarea>
-                <button id="save-btn" class="saveBtn col-1"></button>
+                <button id="save-btn" class="saveBtn col-1"><img src="./assets/images/image.png" /></button>
             </div>`);
         //appends div in hourBlock to container section
         $("#container").append(hourBlock);
@@ -26,7 +26,7 @@ $(document).ready(function () {
         function colourCode() {
             for (var i = 9; i <= 17; i++) {
                 
-                if (hour===i) {
+                if (hour==i) {
                     $(`#text-area${i}`).addClass("present");
                 } else if (hour > i){
                     $(`#text-area${i}`).addClass("past");
@@ -39,24 +39,26 @@ $(document).ready(function () {
     //calls colour coding function
     colourCode();
 
-    //saves values from textareas
-    $(".saveBtn.col-1").on("click", function () {
-        for (var i = 9; i <= 17; i++) {
-            var text = $(`#text-area${i}`).val();
-            var time = $(`#hour${i}`).attr("id");
-            console.log(time, text);
+    //saves values from textareas if save button is clicked
+    $(document).on({
+        "click": function () {
+            const hour = $(this).siblings(".hour.col-1").text();
+            const text = $(this).siblings(".form-control.description.col-6.textarea").val();
+            localStorage.setItem(hour, text);
 
-            var taskObj = {time, text};
+    }}, '.saveBtn')
 
-            taskArray.push(taskObj);
-            
-            //stores array into local storage
-            localStorage.setItem("taskArray", JSON.stringify(taskArray));
-        }
-    });
+    //ensures persistence of saved 
+    function loadPlanner () {
+        $(".hour.col-1").each(function() {
+            var hour = $(this).text();
+            var text = localStorage.getItem(hour);
 
-    var taskArray = []; 
+            if(text !== null) {
+                $(this).siblings(".form-control.description.col-6.textarea").val(text);
+            }
+        })
 
-    //loading feature in progress
-
+    }
+    loadPlanner();
 });

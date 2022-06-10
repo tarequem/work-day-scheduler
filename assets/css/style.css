@@ -61,7 +61,7 @@ textarea{
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06AED5;
+  background-image: linear-gradient(to bottom right, rgb(0, 255, 68), #06AED5);
   color: white;
 }
 
@@ -69,3 +69,4 @@ textarea{
   font-size: 20px;
   transition: all .3s ease-in-out;
 }
+
